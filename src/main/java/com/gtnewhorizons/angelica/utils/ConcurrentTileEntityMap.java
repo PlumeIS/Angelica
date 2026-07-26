@@ -7,7 +7,7 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.ChunkPosition;
 
 import java.util.Collection;
-import java.util.Map;
+import java.util.HashMap;import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.ConcurrentLinkedQueue;
 import java.util.concurrent.locks.ReentrantReadWriteLock;
@@ -17,7 +17,7 @@ import java.util.function.Consumer;
  * Thread-safe wrapper around a tile entity map for chunkTileEntityMap.
  * May wrap either a plain Object2ObjectOpenHashMap (vanilla) or a ColumnTileEntityMap (cubic chunks).
  */
-public class ConcurrentTileEntityMap implements Map<ChunkPosition, TileEntity> {
+public class ConcurrentTileEntityMap extends HashMap<ChunkPosition, TileEntity> implements Map<ChunkPosition, TileEntity> {
     private final Object2ObjectOpenHashMap<ChunkPosition, TileEntity> flatDelegate;
     private final Map<ChunkPosition, TileEntity> delegate;
     private final ReentrantReadWriteLock lock = new ReentrantReadWriteLock();
